@@ -126,4 +126,29 @@ body.onclick = (e) => {
 
 }
 
-setInterval(Tick, frecuencia)
+body.ontouchend = (e) => {
+
+    for (const touch of e.touches) {
+
+        let target = document.createElement("img");
+        target.src = "Mosca.png";
+        target.className = "Mosca";
+        body.appendChild(target);
+
+        let mosca = {
+            x: touch.clientX,
+            y: touch.clientY,
+            direccion: Math.PI * ( Math.random() * Date.now() / 985 % 1 ),
+            velocidad: 50 * ( Math.random() * Date.now() / 758 % 1 ),
+            target
+        }
+
+        Moscas.push(mosca);
+
+        Actualizar(mosca);
+
+    }
+
+}
+
+setInterval(Tick, frecuencia);
